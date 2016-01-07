@@ -23,7 +23,7 @@ const LED_INPUT_COUNT = 4;
 /**
  * The pin's of the input LEDs;
  */
-const int LED_INPUT_PIN[LED_INPUT_COUNT] = {2, 3, 4, 5};
+const int LED_INPUT_PIN[LED_INPUT_COUNT] = {3, 5, 6, 11};
 
 /**
  * The pin of the output LED.
