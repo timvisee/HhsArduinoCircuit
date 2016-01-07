@@ -23,7 +23,7 @@ const int LED_BRIGHTNESS_ON = 255;
 /**
  * Defines how bright a LED that is DIM will be, from 0 to 255.
  */
-const int LED_BRIGHTNESS_DIM = 80;
+const int LED_BRIGHTNESS_DIM = 45;
 
 /**
  * The number of LEDs available as input.
