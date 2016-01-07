@@ -113,6 +113,10 @@ void loop() {
         delay(BUTTON_JITTER_DELAY);
     }
 
+    // Update the state of both buttons in the variables
+    shiftButtonState = shiftButton;
+    toggleButtonState = toggleButton;
+
     // Do the "circuit" logic
     doLogic();
 
