@@ -110,6 +110,9 @@ void loop() {
         delay(BUTTON_JITTER_DELAY);
     }
 
+    // Do the "circuit" logic
+    doLogic();
+
     // Update the LEDs
     updateLeds();
 }
@@ -141,6 +144,9 @@ void toggleSelectedLed() {
     // Write the new state to the LED
     digitalWrite(LED_INPUT_PIN[selectedLed], newLedState);
 
+    // Do the program logic
+    doLogic();
+
     // Wait for a little before updating all LEDs again, because this will make the selected LED dimmed
     delay(LED_TOGGLE_SHOW_DURATION);
 
@@ -165,5 +171,45 @@ void updateLeds() {
 
     // Make the selected LED dimmed
     analogWrite(LED_INPUT_PIN[selectedLed], LED_SELECTED_BRIGHTNESS);
+}
 
+/**
+ * Do the "circuit" logic with the current button states.
+ */
+void doLogic() {
+    // Define some variables with their states for the inputs
+    bool i1 = LED_STATES[0];
+    bool i2 = LED_STATES[1];
+    bool i3 = LED_STATES[2];
+    bool i4 = LED_STATES[3];
+
+    // Define some variables for the logic gates
+    bool t1 = false;
+    bool t2 = false;
+    bool t3 = false;
+    bool o = false;
+
+    // Determine the state of t2
+    //  - Is NOT i1 (thus, it's inverted)
+    t1 = !i1;
+
+    // Determine the state of t2
+    //  - Is t1 AND i2
+    t2 = t1 && i2;
+
+    // Determine the state of t3
+    //  - Is i3 OR i4
+    t3 = i3 || i4;
+
+    // Determine the state of o
+    //  - Is t2 OR t3, and then inverted
+    o = !(t2 || t3);
+
+    // Determine whether the output pin should be LOW or HIGH
+    int outputState = LOW;
+    if(o)
+        outputState = HIGH;
+
+    // Update the pin state of the output LED
+    digitalWrite(LED_OUTPUT_PIN, outputState);
 }
