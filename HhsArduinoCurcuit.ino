@@ -1,31 +1,6 @@
 #include <Arduino.h>
 
 /**
- * Defines the number of milliseconds when a button state has changed to prevent jitter (/bouncing).
- */
-const int BUTTON_JITTER_DELAY = 50;
-
-/**
- * Defines the number of milliseconds to show the new state of a LED before making it dimmed again.
- */
-const int LED_TOGGLE_SHOW_DURATION = 1000;
-
-/**
- * Defines how bright a LED that is OFF will be, from 0 to 255.
- */
-const int LED_BRIGHTNESS_OFF = 0;
-
-/**
- * Defines how bright a LED that is ON will be, from 0 to 255.
- */
-const int LED_BRIGHTNESS_ON = 255;
-
-/**
- * Defines how bright a LED that is DIM will be, from 0 to 255.
- */
-const int LED_BRIGHTNESS_DIM = 30;
-
-/**
  * The number of LEDs available as input.
  */
 const int LED_INPUT_COUNT = 4;
@@ -51,9 +26,34 @@ const int BUTTON_SHIFT_PIN = 7;
 const int BUTTON_TOGGLE_PIN = 8;
 
 /**
+ * Defines the number of milliseconds when a button state has changed to prevent jitter (/bouncing).
+ */
+const int BUTTON_JITTER_DELAY = 50;
+
+/**
+ * Defines the number of milliseconds to show the new state of a LED before making it dimmed again.
+ */
+const int LED_TOGGLE_SHOW_DURATION = 1000;
+
+/**
+ * Defines how bright a LED that is OFF will be, from 0 to 255.
+ */
+const int LED_BRIGHTNESS_OFF = 0;
+
+/**
+ * Defines how bright a LED that is ON will be, from 0 to 255.
+ */
+const int LED_BRIGHTNESS_ON = 255;
+
+/**
+ * Defines how bright a LED that is DIM will be, from 0 to 255.
+ */
+const int LED_BRIGHTNESS_DIM = 30;
+
+/**
  * An array that specifies the state of each input LED.
  */
-bool LED_STATES[LED_INPUT_COUNT] = {false, false, false, false};
+bool ledStates[LED_INPUT_COUNT] = {false, false, false, false};
 
 /**
  * Stores the current state of the shift button.
@@ -66,9 +66,11 @@ bool shiftButtonState = false;
 bool toggleButtonState = false;
 
 /**
- * Stores the index of the selected input LED.
+ * Stores the index of the selected input LED, from 0 to 3.
  */
 int selectedLed = 0;
+
+
 
 /**
  * Called once on setup.
@@ -156,11 +158,11 @@ void shiftSelectedLed() {
  */
 void toggleSelectedLed() {
     // Toggle the state of the selected LED
-    LED_STATES[selectedLed] = !LED_STATES[selectedLed];
+    ledStates[selectedLed] = !ledStates[selectedLed];
 
     // Determine whether the new state is on or off
     int newLedState = LED_BRIGHTNESS_OFF;
-    if(LED_STATES[selectedLed]) {
+    if(ledStates[selectedLed]) {
         newLedState = LED_BRIGHTNESS_ON;
     }
 
@@ -185,7 +187,7 @@ void updateLeds() {
     for(int i = 0; i < LED_INPUT_COUNT; i++) {
         // Determine whether the new state should be on or off
         int newState = LED_BRIGHTNESS_OFF;
-        if(LED_STATES[i]) {
+        if(ledStates[i]) {
             newState = LED_BRIGHTNESS_ON;
         }
 
@@ -204,10 +206,10 @@ void updateLeds() {
  */
 void doLogic() {
     // Define some variables with their states for the inputs
-    bool i1 = LED_STATES[0];
-    bool i2 = LED_STATES[1];
-    bool i3 = LED_STATES[2];
-    bool i4 = LED_STATES[3];
+    bool i1 = ledStates[0];
+    bool i2 = ledStates[1];
+    bool i3 = ledStates[2];
+    bool i4 = ledStates[3];
 
     // Define some variables for the logic gates
     bool t1 = false;
