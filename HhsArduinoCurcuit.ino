@@ -11,9 +11,19 @@ const int BUTTON_JITTER_DELAY = 50;
 const int LED_TOGGLE_SHOW_DURATION = 1000;
 
 /**
- * Defines how bright the selected or dimmed LED will be, from 0 to 255.
+ * Defines how bright a LED that is OFF will be, from 0 to 255.
  */
-const int LED_SELECTED_BRIGHTNESS = 80;
+const int LED_BRIGHTNESS_OFF = 0;
+
+/**
+ * Defines how bright a LED that is ON will be, from 0 to 255.
+ */
+const int LED_BRIGHTNESS_ON = 255;
+
+/**
+ * Defines how bright a LED that is DIM will be, from 0 to 255.
+ */
+const int LED_BRIGHTNESS_DIM = 80;
 
 /**
  * The number of LEDs available as input.
@@ -148,14 +158,14 @@ void toggleSelectedLed() {
     // Toggle the state of the selected LED
     LED_STATES[selectedLed] = !LED_STATES[selectedLed];
 
-    // Determine whether the new state is LOW or HIGH
-    int newLedState = LOW;
+    // Determine whether the new state is on or off
+    int newLedState = LED_BRIGHTNESS_OFF;
     if(LED_STATES[selectedLed]) {
-        newLedState = HIGH;
+        newLedState = LED_BRIGHTNESS_ON;
     }
 
     // Write the new state to the LED
-    digitalWrite(LED_INPUT_PIN[selectedLed], newLedState);
+    analogWrite(LED_INPUT_PIN[selectedLed], newLedState);
 
     // Do the program logic
     doLogic();
@@ -173,18 +183,20 @@ void toggleSelectedLed() {
 void updateLeds() {
     // Loop through all input LEDs and update their visual state
     for(int i = 0; i < LED_INPUT_COUNT; i++) {
-        // Determine whether the new state should be low or high
-        int newState = LOW;
+        // Determine whether the new state should be on or off
+        int newState = LED_BRIGHTNESS_OFF;
         if(LED_STATES[i]) {
-            newState = HIGH;
+            newState = LED_BRIGHTNESS_ON;
         }
 
         // Write the state to the LED pin
-        digitalWrite(LED_INPUT_PIN[i], newState);
+        if(i != selectedLed) {
+            analogWrite(LED_INPUT_PIN[i], newState);
+        }
     }
 
     // Make the selected LED dimmed
-    analogWrite(LED_INPUT_PIN[selectedLed], LED_SELECTED_BRIGHTNESS);
+    analogWrite(LED_INPUT_PIN[selectedLed], LED_BRIGHTNESS_DIM);
 }
 
 /**
