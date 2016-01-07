@@ -3,22 +3,22 @@
 /**
  * Defines the number of milliseconds when a button state has changed to prevent jitter (/bouncing).
  */
-const BUTTON_JITTER_DELAY = 50;
+const int BUTTON_JITTER_DELAY = 50;
 
 /**
  * Defines the number of milliseconds to show the new state of a LED before making it dimmed again.
  */
-const LED_TOGGLE_SHOW_DURATION = 1000;
+const int LED_TOGGLE_SHOW_DURATION = 1000;
 
 /**
  * Defines how bright the selected or dimmed LED will be, from 0 to 255.
  */
-const LED_SELECTED_BRIGHTNESS = 80;
+const int LED_SELECTED_BRIGHTNESS = 80;
 
 /**
  * The number of LEDs available as input.
  */
-const LED_INPUT_COUNT = 4;
+const int LED_INPUT_COUNT = 4;
 
 /**
  * The pin's of the input LEDs;
