@@ -23,7 +23,7 @@ const int LED_INPUT_COUNT = 4;
 /**
  * The pin's of the input LEDs;
  */
-const int LED_INPUT_PIN[LED_INPUT_COUNT] = {3, 5, 6, 11};
+const int LED_INPUT_PIN[LED_INPUT_COUNT] = {5, 6, 9, 10};
 
 /**
  * The pin of the output LED.
@@ -33,12 +33,12 @@ const int LED_OUTPUT_PIN = 12;
 /**
  * Defines the pin of the button that is used to shift the LED that should be toggled.
  */
-const int BUTTON_SHIFT_PIN = 1;
+const int BUTTON_SHIFT_PIN = 7;
 
 /**
  * Defines the pin of the button that is used to toggle the selected LED.
  */
-const int BUTTON_TOGGLE_PIN = 2;
+const int BUTTON_TOGGLE_PIN = 8;
 
 /**
  * An array that specifies the state of each input LED.
