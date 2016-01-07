@@ -65,8 +65,9 @@ int selectedLed = 0;
  */
 void setup() {
     // Set up the input LED pins
-    for(int i = 0; i < LED_INPUT_COUNT; i++)
+    for(int i = 0; i < LED_INPUT_COUNT; i++) {
         pinMode(LED_INPUT_PIN[i], OUTPUT);
+    }
 
     // Set up the output LED pin
     pinMode(LED_OUTPUT_PIN, OUTPUT);
@@ -85,12 +86,14 @@ void loop() {
     bool toggleButton = false;
 
     // Check whether the shift button is pressed
-    if(digitalRead(BUTTON_SHIFT_PIN) == HIGH)
+    if(digitalRead(BUTTON_SHIFT_PIN) == HIGH) {
         shiftButton = true;
+    }
 
     // Check whether the toggle button is pressed
-    if(digitalRead(BUTTON_TOGGLE_PIN) == HIGH)
+    if(digitalRead(BUTTON_TOGGLE_PIN) == HIGH) {
         toggleButton = true;
+    }
 
     // Check whether the state of the shift button has changed
     if(shiftButton != shiftButtonState) {
@@ -125,8 +128,9 @@ void shiftSelectedLed() {
     selectedLed++;
 
     // If the new index is out of bound, change it to the first LED index again
-    if(selectedLed >= LED_INPUT_COUNT)
+    if(selectedLed >= LED_INPUT_COUNT) {
         selectedLed = 0;
+    }
 }
 
 /**
@@ -138,8 +142,9 @@ void toggleSelectedLed() {
 
     // Determine whether the new state is LOW or HIGH
     int newLedState = LOW;
-    if(LED_STATES[selectedLed])
+    if(LED_STATES[selectedLed]) {
         newLedState = HIGH;
+    }
 
     // Write the new state to the LED
     digitalWrite(LED_INPUT_PIN[selectedLed], newLedState);
@@ -162,8 +167,9 @@ void updateLeds() {
     for(int i = 0; i < LED_INPUT_COUNT; i++) {
         // Determine whether the new state should be low or high
         int newState = LOW;
-        if(LED_STATES[i])
+        if(LED_STATES[i]) {
             newState = HIGH;
+        }
 
         // Write the state to the LED pin
         digitalWrite(LED_INPUT_PIN, newState);
@@ -190,25 +196,30 @@ void doLogic() {
     bool o = false;
 
     // Determine the state of t2
-    //  - Is NOT i1 (thus, it's inverted)
+    //  - Is NOT i1 (thus, i1 inverted)
+    //  - Is true if i1 is false, is false if i1 is true
     t1 = !i1;
 
     // Determine the state of t2
     //  - Is t1 AND i2
+    //  - Is true if t1 AND i2 are both true
     t2 = t1 && i2;
 
     // Determine the state of t3
     //  - Is i3 OR i4
+    //  - Is true if i3 OR i4 is true
     t3 = i3 || i4;
 
     // Determine the state of o
     //  - Is t2 OR t3, and then inverted
+    //  - Is true if t2 OR t3 is true, and that result is also inverted
     o = !(t2 || t3);
 
     // Determine whether the output pin should be LOW or HIGH
     int outputState = LOW;
-    if(o)
+    if(o) {
         outputState = HIGH;
+    }
 
     // Update the pin state of the output LED
     digitalWrite(LED_OUTPUT_PIN, outputState);
