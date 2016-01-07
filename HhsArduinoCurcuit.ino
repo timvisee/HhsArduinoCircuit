@@ -1,6 +1,11 @@
 #include <Arduino.h>
 
 /**
+ * Defines the number of milliseconds when a button state has changed to prevent jitter.
+ */
+const BUTTON_JITTER_DELAY = 50;
+
+/**
  * The number of LEDs available as input.
  */
 const LED_INPUT_COUNT = 4;
@@ -31,6 +36,16 @@ const int BUTTON_TOGGLE_PIN = 2;
 bool LED_STATES[LED_INPUT_COUNT] = {false, false, false, false};
 
 /**
+ * Stores the current state of the shift button.
+ */
+bool shiftButtonState = false;
+
+/**
+ * Stores the current state of the toggle button.
+ */
+bool toggleButtonState = false;
+
+/**
  * Called once on setup.
  */
 void setup() {
@@ -50,6 +65,34 @@ void setup() {
  * Called each loop.
  */
 void loop() {
+    // Define a variable for the new shift and toggle button states
+    bool shiftButton = false;
+    bool toggleButton = false;
+
+    // Check whether the shift button is pressed
+    if(digitalRead(BUTTON_SHIFT_PIN) == HIGH)
+        shiftButton = true;
+
+    // Check whether the toggle button is pressed
+    if(digitalRead(BUTTON_TOGGLE_PIN) == HIGH)
+        toggleButton = true;
+
+    // Check whether the state of the shift button has changed
+    if(shiftButton != shiftButtonState) {
+
+
+        // Wait for a little while to prevent button jitter (/bouncing)
+        delay(BUTTON_JITTER_DELAY);
+    }
+
+    // Check whether the state of the toggle button has changed
+    if(toggleButton != toggleButtonState) {
+
+
+        // Wait for a little while to prevent button jitter (/bouncing)
+        delay(BUTTON_JITTER_DELAY);
+    }
+
     // Update the LEDs
     updateLeds();
 }
