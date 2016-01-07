@@ -73,7 +73,7 @@ void setup() {
     pinMode(LED_OUTPUT_PIN, OUTPUT);
 
     // Set up the button pins
-    pinMode(BUTTON_SHIFT_PIN, INTPUT);
+    pinMode(BUTTON_SHIFT_PIN, INPUT);
     pinMode(BUTTON_TOGGLE_PIN, INPUT);
 }
 
@@ -172,7 +172,7 @@ void updateLeds() {
         }
 
         // Write the state to the LED pin
-        digitalWrite(LED_INPUT_PIN, newState);
+        digitalWrite(LED_INPUT_PIN[i], newState);
     }
 
     // Make the selected LED dimmed
