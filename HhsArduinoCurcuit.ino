@@ -1,3 +1,7 @@
+/**
+ * CODE VAN MING, AFBLIJVEN MET DIE FIKKEN VAN JE!
+ */
+
 #include <Arduino.h>
 
 /**
