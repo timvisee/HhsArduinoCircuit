@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 /**
- * Defines the number of milliseconds when a button state has changed to prevent jitter.
+ * Defines the number of milliseconds when a button state has changed to prevent jitter (/bouncing).
  */
 const BUTTON_JITTER_DELAY = 50;
 
@@ -44,6 +44,11 @@ bool shiftButtonState = false;
  * Stores the current state of the toggle button.
  */
 bool toggleButtonState = false;
+
+/**
+ * Stores the index of the seleted input LED.
+ */
+int selectedLed = 0;
 
 /**
  * Called once on setup.
@@ -95,6 +100,18 @@ void loop() {
 
     // Update the LEDs
     updateLeds();
+}
+
+/**
+ * Shift the selected LED by one place.
+ */
+void shiftSelectedLed() {
+    // Increase the index
+    selectedLed++;
+
+    // If the new index is out of bound, change it to the first LED index again
+    if(selectedLed >= LED_INPUT_COUNT)
+        selectedLed = 0;
 }
 
 /**
