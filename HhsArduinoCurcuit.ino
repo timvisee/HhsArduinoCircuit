@@ -26,6 +26,11 @@ const int BUTTON_SHIFT_PIN = 1;
 const int BUTTON_TOGGLE_PIN = 2;
 
 /**
+ * An array that specifies the state of each input LED.
+ */
+bool LED_STATES[LED_INPUT_COUNT] = {false, false, false, false};
+
+/**
  * Called once on setup.
  */
 void setup() {
@@ -45,5 +50,22 @@ void setup() {
  * Called each loop.
  */
 void loop() {
+    // Update the LEDs
+    updateLeds();
+}
 
+/**
+ * Update the visual state of each LED.
+ */
+void updateLeds() {
+    // Loop through all input LEDs and update their visual state
+    for(int i = 0; i < LED_INPUT_COUNT; i++) {
+        // Determine whether the new state should be low or high
+        int newState = LOW;
+        if(LED_STATES[i])
+            newState = HIGH;
+
+        // Write the state to the LED pin
+        digitalWrite(LED_INPUT_PIN, newState);
+    }
 }
