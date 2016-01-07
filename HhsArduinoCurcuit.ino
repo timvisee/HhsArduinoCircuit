@@ -6,6 +6,16 @@
 const BUTTON_JITTER_DELAY = 50;
 
 /**
+ * Defines the number of milliseconds to show the new state of a LED before making it dimmed again.
+ */
+const LED_TOGGLE_SHOW_DURATION = 1000;
+
+/**
+ * Defines how bright the selected or dimmed LED will be, from 0 to 255.
+ */
+const LED_SELECTED_BRIGHTNESS = 80;
+
+/**
  * The number of LEDs available as input.
  */
 const LED_INPUT_COUNT = 4;
@@ -46,7 +56,7 @@ bool shiftButtonState = false;
 bool toggleButtonState = false;
 
 /**
- * Stores the index of the seleted input LED.
+ * Stores the index of the selected input LED.
  */
 int selectedLed = 0;
 
@@ -84,7 +94,8 @@ void loop() {
 
     // Check whether the state of the shift button has changed
     if(shiftButton != shiftButtonState) {
-
+        // Shift the selected LED
+        shiftSelectedLed();
 
         // Wait for a little while to prevent button jitter (/bouncing)
         delay(BUTTON_JITTER_DELAY);
@@ -92,7 +103,8 @@ void loop() {
 
     // Check whether the state of the toggle button has changed
     if(toggleButton != toggleButtonState) {
-
+        // Toggle the selected LED
+        toggleSelectedLed();
 
         // Wait for a little while to prevent button jitter (/bouncing)
         delay(BUTTON_JITTER_DELAY);
@@ -115,6 +127,28 @@ void shiftSelectedLed() {
 }
 
 /**
+ * Toggle the selected LED.
+ */
+void toggleSelectedLed() {
+    // Toggle the state of the selected LED
+    LED_STATES[selectedLed] = !LED_STATES[selectedLed];
+
+    // Determine whether the new state is LOW or HIGH
+    int newLedState = LOW;
+    if(LED_STATES[selectedLed])
+        newLedState = HIGH;
+
+    // Write the new state to the LED
+    digitalWrite(LED_INPUT_PIN[selectedLed], newLedState);
+
+    // Wait for a little before updating all LEDs again, because this will make the selected LED dimmed
+    delay(LED_TOGGLE_SHOW_DURATION);
+
+    // Update the LED states
+    updateLeds();
+}
+
+/**
  * Update the visual state of each LED.
  */
 void updateLeds() {
@@ -128,4 +162,8 @@ void updateLeds() {
         // Write the state to the LED pin
         digitalWrite(LED_INPUT_PIN, newState);
     }
+
+    // Make the selected LED dimmed
+    analogWrite(LED_INPUT_PIN[selectedLed], LED_SELECTED_BRIGHTNESS);
+
 }
