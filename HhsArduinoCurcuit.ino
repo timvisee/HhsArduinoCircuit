@@ -97,8 +97,10 @@ void loop() {
 
     // Check whether the state of the shift button has changed
     if(shiftButton != shiftButtonState) {
-        // Shift the selected LED
-        shiftSelectedLed();
+        // Shift the selected LED, but only if the button is pressed down now
+        if(shiftButton){
+            shiftSelectedLed();
+        }
 
         // Wait for a little while to prevent button jitter (/bouncing)
         delay(BUTTON_JITTER_DELAY);
@@ -106,8 +108,10 @@ void loop() {
 
     // Check whether the state of the toggle button has changed
     if(toggleButton != toggleButtonState) {
-        // Toggle the selected LED
-        toggleSelectedLed();
+        // Toggle the selected LED, but only if the button is pressed down now
+        if(toggleButton) {
+            toggleSelectedLed();
+        }
 
         // Wait for a little while to prevent button jitter (/bouncing)
         delay(BUTTON_JITTER_DELAY);
