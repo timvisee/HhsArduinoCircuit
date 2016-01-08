@@ -8,5 +8,5 @@ set(${CMAKE_PROJECT_NAME}_BOARD uno)
 # The target port the Arduino is connected to, for uploading
 set(${CMAKE_PROJECT_NAME}_PORT COM5)
 
-set(${CMAKE_PROJECT_NAME}_SKETCH HhsArduinoCurcuit.ino)
+set(${CMAKE_PROJECT_NAME}_SKETCH HhsArduinoCircuit.ino)
 generate_arduino_firmware(${CMAKE_PROJECT_NAME})
