@@ -9,52 +9,52 @@
 /**
  * The number of LEDs available as input.
  */
-const int LED_INPUT_COUNT = 4;
+ int LED_INPUT_COUNT = 4;
 
 /**
  * The pin's of the input LEDs;
  */
-const int LED_INPUT_PIN[LED_INPUT_COUNT] = {5, 6, 9, 10};
+int LED_INPUT_PIN[LED_INPUT_COUNT] = {5, 6, 9, 10};
 
 /**
  * The pin of the output LED.
  */
-const int LED_OUTPUT_PIN = 12;
+int LED_OUTPUT_PIN = 12;
 
 /**
  * Defines the pin of the button that is used to shift the LED that should be toggled.
  */
-const int BUTTON_SHIFT_PIN = 7;
+int BUTTON_SHIFT_PIN = 7;
 
 /**
  * Defines the pin of the button that is used to toggle the selected LED.
  */
-const int BUTTON_TOGGLE_PIN = 8;
+int BUTTON_TOGGLE_PIN = 8;
 
 /**
  * Defines the number of milliseconds when a button state has changed to prevent jitter (/bouncing).
  */
-const int BUTTON_JITTER_DELAY = 50;
+int BUTTON_JITTER_DELAY = 50;
 
 /**
  * Defines the number of milliseconds to show the new state of a LED before making it dimmed again.
  */
-const int LED_TOGGLE_SHOW_DURATION = 1000;
+int LED_TOGGLE_SHOW_DURATION = 1000;
 
 /**
  * Defines how bright a LED that is OFF will be, from 0 to 255.
  */
-const int LED_BRIGHTNESS_OFF = 0;
+int LED_BRIGHTNESS_OFF = 0;
 
 /**
  * Defines how bright a LED that is ON will be, from 0 to 255.
  */
-const int LED_BRIGHTNESS_ON = 255;
+int LED_BRIGHTNESS_ON = 255;
 
 /**
  * Defines how bright a LED that is DIM will be, from 0 to 255.
  */
-const int LED_BRIGHTNESS_DIM = 30;
+int LED_BRIGHTNESS_DIM = 30;
 
 /**
  * An array that specifies the state of each input LED.
