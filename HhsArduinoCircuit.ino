@@ -9,7 +9,7 @@
 /**
  * The number of LEDs available as input.
  */
-int LED_INPUT_COUNT = 4;
+const int LED_INPUT_COUNT = 4;
 
 /**
  * The pin's of the input LEDs;
