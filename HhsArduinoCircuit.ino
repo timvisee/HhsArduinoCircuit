@@ -217,38 +217,45 @@ void doLogic() {
     bool i3 = ledStates[2];
     bool i4 = ledStates[3];
 
-    // Define some variables for the logic gates
-    bool t1 = false;
-    bool t2 = false;
-    bool t3 = false;
-    bool o = false;
+//    // Define some variables for the logic gates
+//    bool t1 = false;
+//    bool t2 = false;
+//    bool t3 = false;
+//    bool o = false;
+//
+//    // Determine the state of t2
+//    //  - Is NOT i1 (thus, i1 inverted)
+//    //  - Is true if i1 is false, is false if i1 is true
+//    t1 = !i1;
+//
+//    // Determine the state of t2
+//    //  - Is t1 AND i2
+//    //  - Is true if t1 AND i2 are both true
+//    t2 = t1 && i2;
+//
+//    // Determine the state of t3
+//    //  - Is i3 OR i4
+//    //  - Is true if i3 OR i4 is true
+//    t3 = i3 || i4;
+//
+//    // Determine the state of o
+//    //  - Is t2 OR t3, and then inverted
+//    //  - Is true if t2 OR t3 is true, and that result is also inverted
+//    o = !(t2 || t3);
+//
+//    // Determine whether the output pin should be LOW or HIGH
+//    int outputState = LOW;
+//    if(o) {
+//        outputState = HIGH;
+//    }
+//
+//    // Update the pin state of the output LED
+//    digitalWrite(LED_OUTPUT_PIN, outputState);
 
-    // Determine the state of t2
-    //  - Is NOT i1 (thus, i1 inverted)
-    //  - Is true if i1 is false, is false if i1 is true
-    t1 = !i1;
-
-    // Determine the state of t2
-    //  - Is t1 AND i2
-    //  - Is true if t1 AND i2 are both true
-    t2 = t1 && i2;
-
-    // Determine the state of t3
-    //  - Is i3 OR i4
-    //  - Is true if i3 OR i4 is true
-    t3 = i3 || i4;
-
-    // Determine the state of o
-    //  - Is t2 OR t3, and then inverted
-    //  - Is true if t2 OR t3 is true, and that result is also inverted
-    o = !(t2 || t3);
-
-    // Determine whether the output pin should be LOW or HIGH
-    int outputState = LOW;
-    if(o) {
-        outputState = HIGH;
+    // Do the circuit logic, and write the result to the output pin
+    if(!((!i1 && i2) || (i3 || i4))) {
+        digitalWrite(LED_OUTPUT_PIN, HIGH);
+    } else {
+        digitalWrite(LED_OUTPUT_PIN, LOW);
     }
-
-    // Update the pin state of the output LED
-    digitalWrite(LED_OUTPUT_PIN, outputState);
 }
