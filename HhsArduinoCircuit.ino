@@ -217,8 +217,17 @@ void doLogic() {
     bool i3 = ledStates[2];
     bool i4 = ledStates[3];
 
+//    // Do the circuit logic, and write the result to the output pin
+//    if(!((!i1 && i2) || (i3 || i4))) {
+//        digitalWrite(LED_OUTPUT_PIN, HIGH);
+//    } else {
+//        digitalWrite(LED_OUTPUT_PIN, LOW);
+//    }
+
     // Do the circuit logic, and write the result to the output pin
-    if(!((!i1 && i2) || (i3 || i4))) {
+    if((!i1 && !i2 && !i3 && !i4)
+       || (i1 && !i2 && !i3 && !i4)
+       || (i1 && i2 && !i3 && !i4)) {
         digitalWrite(LED_OUTPUT_PIN, HIGH);
     } else {
         digitalWrite(LED_OUTPUT_PIN, LOW);
