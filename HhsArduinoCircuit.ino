@@ -104,53 +104,55 @@ void setup() {
 }
 
 /**
- * Called each loop.
+ * Wordt aangeroepen elke keer aan geroepen na de setup() functie.
  */
 void loop() {
-    // Define a variable for the new shift and toggle button states
+    // Definieer twee variabelen voor de verschuif en omzet knoppen
     bool shiftButton = false;
     bool toggleButton = false;
 
-    // Check whether the shift button is pressed
+    // Kijk of de verschuif knop is ingedrukt, sla het resultaat op in de variabele
     if(digitalRead(BUTTON_SHIFT_PIN) == HIGH) {
         shiftButton = true;
     }
 
-    // Check whether the toggle button is pressed
+    // Kijk of de omzet knop is ingedrukt, sla het resultaat op in de variabele
     if(digitalRead(BUTTON_TOGGLE_PIN) == HIGH) {
         toggleButton = true;
     }
 
-    // Check whether the state of the shift button has changed
+    // Kijk of op dit moment de verschuif knop ingedrukt of losgelaten wordt
     if(shiftButton != shiftButtonState) {
-        // Shift the selected LED, but only if the button is pressed down now
+        // Als de knop wordt ingedrukt
         if(shiftButton){
+            // Verschuif de geselecteerde LED (of zet de edit modus aan)
             shiftSelectedLed();
         }
 
-        // Wait for a little while to prevent button jitter (/bouncing)
+        // Wacht even om problemen met de button te voorkomen
         delay(BUTTON_JITTER_DELAY);
     }
 
-    // Check whether the state of the toggle button has changed
+    // Kijk of op dit moment de omzet knop ingedrukt of losgelaten wordt
     if(toggleButton != toggleButtonState) {
-        // Toggle the selected LED, but only if the button is pressed down now
+        // Als de knop wordt ingedrukt
         if(toggleButton) {
+            // Zet de geselecteerde LED om (alleen als de edit modus aan staat)
             toggleSelectedLed();
         }
 
-        // Wait for a little while to prevent button jitter (/bouncing)
+        // Wacht even om problemen met de button te voorkomen
         delay(BUTTON_JITTER_DELAY);
     }
 
-    // Update the state of both buttons in the variables
+    // Sla de statussen van de knoppen op in de variabelen
     shiftButtonState = shiftButton;
     toggleButtonState = toggleButton;
 
-    // Do the "circuit" logic
+    // Bereken het resultaat van het circuit, en toon het resultaat bij het output lampje
     doLogic();
 
-    // Update the LEDs
+    // Stel de status van de input LEDs in gebaseerd op de invoer
     updateLeds();
 }
 
