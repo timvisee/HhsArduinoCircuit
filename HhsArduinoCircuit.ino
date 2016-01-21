@@ -185,6 +185,10 @@ void shiftSelectedLed() {
  * Zet de geselecteerde LED om.
  */
 void toggleSelectedLed() {
+    // Ga de functie direct weer uit als de edit modus niet aan staat
+    if(editMode == false)
+        return;
+
     // Draai de status om van de geselecteerde LED
     ledStates[selectedLed] = !ledStates[selectedLed];
 
