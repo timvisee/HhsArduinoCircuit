@@ -10,32 +10,34 @@
 #include <Arduino.h>
 
 /**
- * The number of LEDs available as input.
+ * Aantal LEDs als input.
  */
 const int LED_INPUT_COUNT = 4;
 
 /**
- * The pin's of the input LEDs;
+ * Arduino pinnen van de input LEDs.
  */
 int LED_INPUT_PIN[LED_INPUT_COUNT] = {5, 6, 9, 10};
 
 /**
- * The pin of the output LED.
+ * Arduino pin van de output LED.
  */
 int LED_OUTPUT_PIN = 12;
 
 /**
- * Defines the pin of the button that is used to shift the LED that should be toggled.
+ * Arduino pin van de knop die gebruikt kan worden om de volgende LED te selecteren, of om de edit modus aan te in
+ * te gaan.
  */
 int BUTTON_SHIFT_PIN = 7;
 
 /**
- * Defines the pin of the button that is used to toggle the selected LED.
+ * Arduino pin van de knop die gebruikt kan worden om de geselecteerde LED om te zetten in de edit modus.
  */
 int BUTTON_TOGGLE_PIN = 8;
 
 /**
- * Defines the number of milliseconds when a button state has changed to prevent jitter (/bouncing).
+ * Het aantal millisecondes dat de Arduino moet wachten als een knop ingedrukt of losgelaten wordt. Om problemen met
+ * 'bouncing' of 'jitter' te voorkomen.
  */
 int BUTTON_JITTER_DELAY = 50;
 
@@ -45,42 +47,45 @@ int BUTTON_JITTER_DELAY = 50;
 int LED_TOGGLE_SHOW_DURATION = 1000;
 
 /**
- * Defines how bright a LED that is OFF will be, from 0 to 255.
+ * De felheid van de LEDs als ze uit moeten staan, van 0 tot 255.
  */
 int LED_BRIGHTNESS_OFF = 0;
 
 /**
- * Defines how bright a LED that is ON will be, from 0 to 255.
+ * De felheid van de LEDs als ze vaag moeten branden, van 0 tot 255.
  */
 int LED_BRIGHTNESS_ON = 255;
 
 /**
- * Defines how bright a LED that is DIM will be, from 0 to 255.
+ * De felheid van de LEDs als ze aan moeten staan, van 0 tot 255.
  */
 int LED_BRIGHTNESS_DIM = 30;
 
 /**
- * An array that specifies the state of each input LED.
+ * Een array waar de status van elke LED in wordt opgeslagen. True betekent dat de LED aan staa, false betekent uit.
+ * Deze array bevat een status voor elk van de input LEDs.
  */
 bool ledStates[LED_INPUT_COUNT] = {false, false, false, false};
 
 /**
- * Stores the current state of the shift button.
+ * Deze variabele slaat de laatste status van de verschuif knop op. True betekent dat de knop de laatste keer was
+ * ingedrukt, false betekent dat de knop niet is ingedrukt.
  */
 bool shiftButtonState = false;
 
 /**
- * Stores the current state of the toggle button.
+ * Deze variabele slaat de laatste status van de omzet knop op. True betekent dat de knop de laatste keer was
+ * ingedrukt, false betekent dat de knop niet is ingedrukt.
  */
 bool toggleButtonState = false;
 
 /**
- * Stores the index of the selected input LED, from 0 to 3.
+ * De geselecteerde LED. 0 is de eerste LED, 3 de laatste.
  */
 int selectedLed = 0;
 
 /**
- * Defines whether the device is currently in edit mode or not.
+ * Specificeert of de edit modus aan staat. True betekent dat de modus aan staat, false dat de modus uit staat.
  */
 bool editMode = false;
 
