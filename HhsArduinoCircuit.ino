@@ -87,18 +87,18 @@ bool editMode = false;
 
 
 /**
- * Called once on setup.
+ * Wordt aangeroepen als de Arduino start.
  */
 void setup() {
-    // Set up the input LED pins
+    // Stel de input LED pinnen in
     for(int i = 0; i < LED_INPUT_COUNT; i++) {
         pinMode(LED_INPUT_PIN[i], OUTPUT);
     }
 
-    // Set up the output LED pin
+    // Stel de output LED pinnen in
     pinMode(LED_OUTPUT_PIN, OUTPUT);
 
-    // Set up the button pins
+    // Stel de twee buttons in
     pinMode(BUTTON_SHIFT_PIN, INPUT);
     pinMode(BUTTON_TOGGLE_PIN, INPUT);
 }
