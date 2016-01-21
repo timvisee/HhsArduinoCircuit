@@ -189,14 +189,8 @@ void toggleSelectedLed() {
         newLedState = LED_BRIGHTNESS_ON;
     }
 
-    // Write the new state to the LED
-    analogWrite(LED_INPUT_PIN[selectedLed], newLedState);
-
     // Do the program logic
     doLogic();
-
-    // Wait for a little before updating all LEDs again, because this will make the selected LED dimmed
-    delay(LED_TOGGLE_SHOW_DURATION);
 
     // Update the LED states
     updateLeds();
