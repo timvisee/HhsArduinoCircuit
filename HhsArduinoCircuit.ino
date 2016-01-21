@@ -1,6 +1,9 @@
 /**
  * "circuit" opdracht.
  *
+ * Met dit programma voor de Arduino kun je een circuit simuleren. Er zijn vier lampjes, deze kun je door middel van
+ * twee knoppen aan of uit zetten. Het vijfde 'output' lampje laat het gesimuleerde resultaat zien van het circuit.
+ *
  * Gemaakt door Ming.
  */
 
