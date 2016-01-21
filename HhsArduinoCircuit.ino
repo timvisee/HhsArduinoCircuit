@@ -200,23 +200,23 @@ void toggleSelectedLed() {
 }
 
 /**
- * Update the visual state of each LED.
+ * Stel de status van alle input LEDs in op basis van de invoer.
  */
 void updateLeds() {
-    // Loop through all input LEDs and update their visual state
+    // Ga langs elke LED
     for(int i = 0; i < LED_INPUT_COUNT; i++) {
-        // Determine whether the new state should be on or off
+        // Bepaal of de huidige LED aan of uit moet staan, zoek daar de juiste felheid bij
         int newState = LED_BRIGHTNESS_OFF;
         if(ledStates[i] == true) {
             newState = LED_BRIGHTNESS_ON;
         }
 
-        // If the edit mode is turned on, and this LED isn't selected, dim the LED
+        // Als de edit modus aan staat, en de huidige LED is niet de geselecteerde, verander de felheid naar het vaag branden
         if(editMode && selectedLed != i) {
             newState = LED_BRIGHTNESS_DIM;
         }
 
-        // Write the state to the LED pin
+        // Stuur de bepaalde felheid door naar het lampje
         analogWrite(LED_INPUT_PIN[i], newState);
     }
 }
