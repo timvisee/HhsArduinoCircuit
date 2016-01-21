@@ -182,10 +182,10 @@ void shiftSelectedLed() {
 }
 
 /**
- * Toggle the selected LED.
+ * Zet de geselecteerde LED om.
  */
 void toggleSelectedLed() {
-    // Toggle the state of the selected LED
+    // Draai de status om van de geselecteerde LED
     ledStates[selectedLed] = !ledStates[selectedLed];
 
     // Determine whether the new state is on or off
@@ -194,10 +194,10 @@ void toggleSelectedLed() {
         newLedState = LED_BRIGHTNESS_ON;
     }
 
-    // Do the program logic
+    // Bereken de circuit logica opnieuw
     doLogic();
 
-    // Update the LED states
+    // Stel de status van alle LEDs opnieuw in
     updateLeds();
 }
 
