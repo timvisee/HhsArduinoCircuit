@@ -222,28 +222,23 @@ void updateLeds() {
 }
 
 /**
- * Do the "circuit" logic with the current button states.
+ * Doe alle logica voor het circuit. Het resultaat wordt getoond bij het output lampje
  */
 void doLogic() {
-    // Define some variables with their states for the inputs
+    // Verkrijg de vier inputs van het circuit
     bool i1 = ledStates[0];
     bool i2 = ledStates[1];
     bool i3 = ledStates[2];
     bool i4 = ledStates[3];
 
-//    // Do the circuit logic, and write the result to the output pin
-//    if(!((!i1 && i2) || (i3 || i4))) {
-//        digitalWrite(LED_OUTPUT_PIN, HIGH);
-//    } else {
-//        digitalWrite(LED_OUTPUT_PIN, LOW);
-//    }
-
-    // Do the circuit logic, and write the result to the output pin
+    // Bereken of het output lampje aan of uit moet staan
     if((!i1 && !i2 && !i3 && !i4)
        || (i1 && !i2 && !i3 && !i4)
        || (i1 && i2 && !i3 && !i4) == true) {
+        // Set het output lampje aan
         digitalWrite(LED_OUTPUT_PIN, HIGH);
     } else {
+        // Set het output lampje uit
         digitalWrite(LED_OUTPUT_PIN, LOW);
     }
 }
