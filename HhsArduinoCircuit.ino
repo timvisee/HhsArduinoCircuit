@@ -157,25 +157,25 @@ void loop() {
 }
 
 /**
- * Shift the selected LED by one place.
+ * Verschuif de geselecteerde LED met 1 positie, of zet de edit modus aan als deze nog niet aan staat.
  */
 void shiftSelectedLed() {
-    // Start the edit mode if the device isn't in edit mode yet
+    // Zet de edit modus aan als deze nog niet aan staat
     if(editMode == false) {
-        // Start the edit mode
+        // Zet de modus aan
         editMode = true;
 
-        // Reset the selected LED
+        // Selecteer de eerste LED
         selectedLed = 0;
 
-        // Leave the function to handle everything in the edit mode
+        // Ga de functie uit, het selecteren van de volgende LED moet pas de volgende keer
         return;
     }
 
-    // Increase the index
+    // Selecteer de volgende LED
     selectedLed++;
 
-    // If the new index is out of bound, disable the edit mode
+    // Zet de edit modus weer uit als de laatste LED geselecteerd was
     if(selectedLed >= LED_INPUT_COUNT) {
         editMode = false;
     }
