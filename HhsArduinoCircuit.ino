@@ -76,6 +76,11 @@ bool toggleButtonState = false;
  */
 int selectedLed = 0;
 
+/**
+ * Defines whether the device is currently in edit mode or not.
+ */
+bool editMode = false;
+
 
 
 /**
@@ -150,12 +155,24 @@ void loop() {
  * Shift the selected LED by one place.
  */
 void shiftSelectedLed() {
+    // Start the edit mode if the device isn't in edit mode yet
+    if(!editMode) {
+        // Start the edit mode
+        editMode = true;
+
+        // Reset the selected LED
+        selectedLed = 0;
+
+        // Leave the function to handle everything in the edit mode
+        return;
+    }
+
     // Increase the index
     selectedLed++;
 
-    // If the new index is out of bound, change it to the first LED index again
+    // If the new index is out of bound, disable the edit mode
     if(selectedLed >= LED_INPUT_COUNT) {
-        selectedLed = 0;
+        editMode = false;
     }
 }
 
@@ -197,14 +214,14 @@ void updateLeds() {
             newState = LED_BRIGHTNESS_ON;
         }
 
-        // Write the state to the LED pin
-        if(i != selectedLed) {
-            analogWrite(LED_INPUT_PIN[i], newState);
+        // If the edit mode is turned on, and this LED isn't selected, dim the LED
+        if(editMode && selectedLed != i) {
+            newState = LED_BRIGHTNESS_DIM;
         }
-    }
 
-    // Make the selected LED dimmed
-    analogWrite(LED_INPUT_PIN[selectedLed], LED_BRIGHTNESS_DIM);
+        // Write the state to the LED pin
+        analogWrite(LED_INPUT_PIN[i], newState);
+    }
 }
 
 /**
