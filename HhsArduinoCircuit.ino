@@ -161,7 +161,7 @@ void loop() {
  */
 void shiftSelectedLed() {
     // Start the edit mode if the device isn't in edit mode yet
-    if(!editMode) {
+    if(editMode == false) {
         // Start the edit mode
         editMode = true;
 
@@ -190,7 +190,7 @@ void toggleSelectedLed() {
 
     // Determine whether the new state is on or off
     int newLedState = LED_BRIGHTNESS_OFF;
-    if(ledStates[selectedLed]) {
+    if(ledStates[selectedLed] == true) {
         newLedState = LED_BRIGHTNESS_ON;
     }
 
@@ -209,7 +209,7 @@ void updateLeds() {
     for(int i = 0; i < LED_INPUT_COUNT; i++) {
         // Determine whether the new state should be on or off
         int newState = LED_BRIGHTNESS_OFF;
-        if(ledStates[i]) {
+        if(ledStates[i] == true) {
             newState = LED_BRIGHTNESS_ON;
         }
 
@@ -243,7 +243,7 @@ void doLogic() {
     // Do the circuit logic, and write the result to the output pin
     if((!i1 && !i2 && !i3 && !i4)
        || (i1 && !i2 && !i3 && !i4)
-       || (i1 && i2 && !i3 && !i4)) {
+       || (i1 && i2 && !i3 && !i4) == true) {
         digitalWrite(LED_OUTPUT_PIN, HIGH);
     } else {
         digitalWrite(LED_OUTPUT_PIN, LOW);
