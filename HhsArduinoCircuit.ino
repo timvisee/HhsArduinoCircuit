@@ -42,11 +42,6 @@ int BUTTON_TOGGLE_PIN = 8;
 int BUTTON_JITTER_DELAY = 50;
 
 /**
- * Defines the number of milliseconds to show the new state of a LED before making it dimmed again.
- */
-int LED_TOGGLE_SHOW_DURATION = 1000;
-
-/**
  * De felheid van de LEDs als ze uit moeten staan, van 0 tot 255.
  */
 int LED_BRIGHTNESS_OFF = 0;
