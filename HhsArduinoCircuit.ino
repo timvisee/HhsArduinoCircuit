@@ -211,7 +211,8 @@ void updateLeds() {
             newState = LED_BRIGHTNESS_ON;
         }
 
-        // Als de edit modus aan staat, en de huidige LED is niet de geselecteerde, verander de felheid naar het vaag branden
+        // Als de edit modus aan staat, en de huidige LED is niet de geselecteerde, verander de felheid naar het
+        // vaag branden
         if(editMode && selectedLed != i) {
             newState = LED_BRIGHTNESS_DIM;
         }
