@@ -188,12 +188,6 @@ void toggleSelectedLed() {
     // Draai de status om van de geselecteerde LED
     ledStates[selectedLed] = !ledStates[selectedLed];
 
-    // Determine whether the new state is on or off
-    int newLedState = LED_BRIGHTNESS_OFF;
-    if(ledStates[selectedLed] == true) {
-        newLedState = LED_BRIGHTNESS_ON;
-    }
-
     // Bereken de circuit logica opnieuw
     doLogic();
 
