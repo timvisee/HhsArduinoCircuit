@@ -124,7 +124,7 @@ void loop() {
     // Kijk of op dit moment de verschuif knop ingedrukt of losgelaten wordt
     if(shiftButton != shiftButtonState) {
         // Als de knop wordt ingedrukt
-        if(shiftButton){
+        if(shiftButton == true){
             // Verschuif de geselecteerde LED (of zet de edit modus aan)
             shiftSelectedLed();
         }
@@ -136,7 +136,7 @@ void loop() {
     // Kijk of op dit moment de omzet knop ingedrukt of losgelaten wordt
     if(toggleButton != toggleButtonState) {
         // Als de knop wordt ingedrukt
-        if(toggleButton) {
+        if(toggleButton == true) {
             // Zet de geselecteerde LED om (alleen als de edit modus aan staat)
             toggleSelectedLed();
         }
@@ -213,7 +213,7 @@ void updateLeds() {
 
         // Als de edit modus aan staat, en de huidige LED is niet de geselecteerde, verander de felheid naar het
         // vaag branden
-        if(editMode && selectedLed != i) {
+        if(editMode == true && selectedLed != i) {
             newState = LED_BRIGHTNESS_DIM;
         }
 
@@ -236,10 +236,10 @@ void doLogic() {
     if((!i1 && !i2 && !i3 && !i4)
        || (i1 && !i2 && !i3 && !i4)
        || (i1 && i2 && !i3 && !i4) == true) {
-        // Set het output lampje aan
+        // Zet het output lampje aan
         digitalWrite(LED_OUTPUT_PIN, HIGH);
     } else {
-        // Set het output lampje uit
+        // Zet het output lampje uit
         digitalWrite(LED_OUTPUT_PIN, LOW);
     }
 }
